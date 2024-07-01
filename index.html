@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cookie Handler Documentation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0px;
+      background-color: #f4f4f4;
+    }
+    h1, h2, h3 {
+      color: #333;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      padding: 10px 20px;
+      margin: 10px 0;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    pre {
+      position: relative;
+      background: #0e101e;
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      overflow: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      padding: 5px 10px;
+      border: none;
+      background-color: #007BFF;
+      color: white;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .copy-btn:hover {
+      background-color: #0056b3;
+    }
+    span{
+        font-size: 14px;
+    }
+    .whiteP{
+        color: white;
+    }
+    .green{
+        color: greenyellow;
+    }
+    .comment{
+        color: #979191;
+    }
+    .import, .from{
+        color:rgb(245 71 255);
+    }
+    .yellow{
+        color: yellow;
+    }
+    .blue{
+        color: rgb(132, 216, 252);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Cookie Handler</h1>
+    <p>A simple and flexible cookie handler for JavaScript and TypeScript projects.</p>
+
+    <h2>Installation</h2>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('install-code')">Copy</button>
+      <code id="install-code"><span class="white">npm install</span><span class="green"> cookie-handler-pro</span></code>
+    </pre>
+    <p>OR</p>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('install-code')">Copy</button>
+      <span class="white">npm i</span><span class="green"> cookie-handler-pro</span>
+    </pre>
+
+    <h2>Usage</h2>
+    <h3>Setting a Cookie</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('set-cookie-code')">Copy</button>
+      <code id="set-cookie-code">
+    <span class="import">import</span><span class="white"> <span class="yellow">{ setCookie }</span> <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span>
+    
+    <span class="comment">//Set a cookie with various options</span>
+    <span>
+    setCookie('username', 'john_doe', {
+    expires: '7d', // Expires in 7 days
+    path: '/',
+    domain: 'example.com',
+    secure: true,
+    sameSite: 'Lax'});
+    </span>
+    <span class="comment">// Set a cookie to expire in 2 hours</span>
+
+    <span>setCookie('session', 'abcd1234', {  expires: '2h',  path: '/'});</span>
+    </code>
+    </pre>
+
+    <h3>Getting a Cookie</h3>
+    <pre>
+    <button class="copy-btn" onclick="copyToClipboard('get-cookie-code')">Copy</button>
+    <code id="get-cookie-code"><span class="import">import</span> <span class="yellow">{ getCookie }</span> <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span> 
+    
+    <span>const username = getCookie('username');console.log(username); </span> <span class="comment">// Output: 'john_doe'</span> 
+    </code>
+    </pre>
+
+    <h3>Deleting a Cookie</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('delete-cookie-code')">Copy</button>
+
+    <code id="get-cookie-code"><span class="import">import</span> <span class="yellow">{ deleteCookie }</span> <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span> 
+    
+    <span>deleteCookie('username', { path: '/', domain: 'example.com' }); </span> 
+    </pre>
+
+    <h2>Usage in Next.js</h2>
+    <h3>Setting a Cookie in Next.js</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('nextjs-set-cookie-code')">Copy</button>
+      <code id="nextjs-set-cookie-code">
+    <span class="comment">// pages/api/set-username.ts</span>
+
+    <span class="import">import</span> <span class="yellow">{ NextApiRequest, NextApiResponse }</span>  <span class="from">from</span> <span class="yellow">'next';</span> 
+    <span class="import">import</span> <span class="yellow">{ setCookie }</span>  <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span> 
+    <span>
+    export default function handler(req: NextApiRequest, res: NextApiResponse) {
+        setCookie('username', 'john_doe', {
+        expires: '7d',
+        path: '/',
+        domain: req.headers.host,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Lax'
+        });
+    
+        res.status(200).json({ message: 'Cookie set successfully' });
+    }
+    </span></code></pre>
+
+    <h3>Getting a Cookie in Next.js</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('nextjs-get-cookie-code')">Copy</button>
+      <code id="nextjs-get-cookie-code">
+    <span class="comment">// pages/index.tsx</span>
+
+    <span class="import">import</span> <span class="yellow">{ useEffect, useState }</span>  <span class="from">from</span> <span class="yellow">'react';</span> 
+    <span class="import">import</span> <span class="yellow">{ getCookie }</span>  <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span> 
+
+    <span>
+    const HomePage = () => {
+        const [username, setUsername] = useState<string | null>(null);
+    
+        useEffect(() => {
+        const cookieValue = getCookie('username');
+        setUsername(cookieValue);
+        }, []);
+    
+        return &lt;div&gt;Username: {username}&lt;/div&gt;;
+    };
+
+    export default HomePage;
+    </span></code></pre>
+
+    <h3>Deleting a Cookie in Next.js</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('nextjs-delete-cookie-code')">Copy</button>
+    <code id="nextjs-delete-cookie-code">
+    <span class="comment">// pages/api/delete-username.ts</span>
+
+    <span class="import">import</span> <span class="yellow">{ NextApiRequest, NextApiResponse }</span> <span class="from">from</span> <span class="yellow">'next';</span>   
+    <span class="import">import</span> <span class="yellow">{ deleteCookie }</span> <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span>   
+
+    <span>
+    export default function handler(req: NextApiRequest, res: NextApiResponse) {
+        deleteCookie('username', { path: '/', domain: req.headers.host });
+        
+        res.status(200).json({ message: 'Cookie deleted successfully' });
+    }
+    </span></code></pre>
+
+    <h3>Next.js App Route</h3>
+    <pre>
+      <button class="copy-btn" onclick="copyToClipboard('nextjs-app-route-code')">Copy</button>
+    <code id="nextjs-app-route-code">
+    <span class="blue">"use client";</span>  
+
+    <span class="import">import</span> <span class="yellow">{ getCookie, setCookie, deleteCookie }</span> <span class="from">from</span> <span class="yellow">'cookie-handler-pro';</span>
+        
+    <span>
+    export default function Home() {
+        const handleSetCookie = () => {
+            setCookie("username", "john_doe", {
+                expires: "7d",
+                path: "/",
+                domain: window.location.hostname, // Use window.location.hostname instead of req.headers.host
+                secure: process.env.NODE_ENV === "production",
+                sameSite: "Lax",
+            });
+        };
+        const handleDeleteCookie = () => {
+              deleteCookie("username");
+        };
+        const value = getCookie("username"); 
+        return (
+            &lt;&gt;
+            &lt;button onClick={handleSetCookie}&gt;Set Cookie&lt;/button&gt; <br>    
+        &lt;button onClick={handleDeleteCookie}&gt;Delete Cookie&lt;/button&gt;      
+        &lt;h1&gt;Cookies: {value}&lt;/h1&gt;
+        &lt;/&gt;
+        );
+    }
+    </span></code></pre>
+
+    <span>Author</span> <span><a href="http://nrshagor.com" target="_blank">N R SHAGOR</a></span>
+    <br>
+    <span>License</span> <span>MIT</span>
+  </div>
+
+  <script>
+    function copyToClipboard(id) {
+      const codeElement = document.getElementById(id);
+      const range = document.createRange();
+      range.selectNode(codeElement);
+      window.getSelection().removeAllRanges(); 
+      window.getSelection().addRange(range);
+      document.execCommand('copy');
+      window.getSelection().removeAllRanges(); 
+
+      alert('Code copied to clipboard');
+    }
+  </script>
+</body>
+</html>
