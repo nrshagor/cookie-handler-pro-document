@@ -19,6 +19,8 @@
       padding: 20px;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-height: 96vh; /* Limit height for overflow */
+      overflow: auto; /* Enable scrollbars */
     }
     button {
       padding: 10px 20px;
@@ -42,9 +44,9 @@
       overflow: auto;
     }
     .copy-btn {
-      position: absolute;
-      right: 10px;
-      top: 10px;
+      position: relative;
+      left: -35px;
+      top: -17px;
       padding: 5px 10px;
       border: none;
       background-color: #007BFF;
@@ -76,10 +78,104 @@
     .blue{
         color: rgb(132, 216, 252);
     }
+    
+    /* Custom Scrollbar for Webkit Browsers (Chrome, Safari) */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 12px; /* Width of the vertical scrollbar */
+      height: 12px; /* Height of the horizontal scrollbar */
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Background of the scrollbar track */
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners */
+      border: 3px solid #f1f1f1; /* Space around the thumb */
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    /* Custom Scrollbar for Firefox */
+    .custom-scrollbar {
+      scrollbar-width: thin; /* Thin scrollbar */
+      scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
+    }
+
+    /* Custom Scrollbar for Edge, IE, and others */
+    .custom-scrollbar {
+      -ms-overflow-style: none; /* Hide default scrollbar in IE */
+    }
+
+    .custom-scrollbar::-ms-scrollbar {
+      width: 12px; /* Width of the scrollbar */
+      height: 12px; /* Height of the scrollbar */
+    }
+
+    .custom-scrollbar::-ms-scrollbar-track {
+      background: #f1f1f1; /* Background of the scrollbar track */
+    }
+
+    .custom-scrollbar::-ms-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners */
+      border: 3px solid #f1f1f1; /* Space around the thumb */
+    }
+
+    .custom-scrollbar::-ms-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    /* Custom Scrollbar for <pre> tag */
+    pre::-webkit-scrollbar {
+      height: 8px; /* Height of the horizontal scrollbar */
+    }
+
+    pre::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Background of the scrollbar track */
+    }
+
+    pre::-webkit-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners */
+    }
+
+    pre::-webkit-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
+
+    pre {
+      scrollbar-width: thin; /* Thin scrollbar for Firefox */
+      scrollbar-color: #888 #f1f1f1; /* Thumb color and track color */
+    }
+
+    pre {
+      -ms-overflow-style: none; /* Hide default scrollbar in IE */
+    }
+
+    pre::-ms-scrollbar {
+      height: 8px; /* Height of the scrollbar */
+    }
+
+    pre::-ms-scrollbar-track {
+      background: #f1f1f1; /* Background of the scrollbar track */
+    }
+
+    pre::-ms-scrollbar-thumb {
+      background-color: #888; /* Color of the scrollbar thumb */
+      border-radius: 10px; /* Rounded corners */
+    }
+
+    pre::-ms-scrollbar-thumb:hover {
+      background: #555; /* Color of the scrollbar thumb when hovered */
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="container custom-scrollbar">
     <h1>Cookie Handler</h1>
     <p>A simple and flexible cookie handler for JavaScript and TypeScript projects.</p>
 
@@ -251,4 +347,3 @@
   </script>
 </body>
 </html>
-
